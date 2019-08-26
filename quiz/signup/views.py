@@ -16,3 +16,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+def home(request) :
+    return render(request, 'home.html')

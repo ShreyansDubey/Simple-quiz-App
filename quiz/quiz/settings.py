@@ -122,7 +122,14 @@ USE_L10N = True
 USE_TZ = True
 
 # User redirect to this after login
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/auth/login/google-oauth2/'
+
+#Google OAuth 2.0 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1046168886754-s412f59pqvk9gg89fk336shpovep5q6s.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9jnWxxApeY9LylI6TnicfQ5I'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 
 
