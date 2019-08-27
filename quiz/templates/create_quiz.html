@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Hello{% endblock %}
+{% block script %}<script src="{% static 'quiz_renderer.js' %}"></script>{% endblock %}
+{% block title %}Create Quiz{% endblock %}
 
 {% block content %}
 <h1>My fake blog!</h1>
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
   <a href="{% url 'logout' %}">Logout</a>
-  <br>
-  <a href="{% url 'create_quiz' %}"> Create a new quiz </a>
+  <input id='noq' name='noq', type="number">
+  <button id='sub_noq'>Submit</button>
+    <form id='q_form' method="POST">
+        {% csrf_token %}
+    </form>
 {% else %}
+  <p> Please login to create quizzes </p>
   <a href="{% url 'social:begin' 'google-oauth2' %}">
     Login with google
   </a>
