@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'createQuiz',
-    'signup'
+    'signup',
+    'takeQuiz',
 ]
 
 MIDDLEWARE = [
