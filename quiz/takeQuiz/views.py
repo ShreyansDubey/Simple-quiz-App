@@ -48,21 +48,35 @@ def attempt_quiz(request) :
             print(u_q_o)
             try :
                 #user has already attempted this quiz
+                #do not increment the quiz taken count
                 temp = u_q_o[str(q_idx)]
                 print(temp)
             except :
                 #user has not attempted this quiz
+                #increment the quiz taken count
+                quiz = quizzes.objects.get(quiz_index=q_idx)
+                quiz.times_attempted += 1
+                quiz.save()
+
+                #add this quiz entry to the JSON
                 q_dict = {
                     'correct' : correct,
                     'incorrect' : len(ans) - correct
                 }
                 #change existing record
                 u_q_o[str(q_idx)] = q_dict
+                #stringify the JSON and save
                 user_quiz_obj.quiz_taken_JSON = json.dumps(u_q_o)
                 user_quiz_obj.save()
         elif len(user_quiz_obj) == 0 :
             print('in 0')
             #record does not exist (this is the first quiz user has submitted)
+            
+            #increment the quiz taken count
+            quiz = quizzes.objects.get(quiz_index=q_idx)
+            quiz.times_attempted += 1
+            quiz.save()
+
             #create new record for the user
             quiz_taken_j = {
                 str(q_idx) : {

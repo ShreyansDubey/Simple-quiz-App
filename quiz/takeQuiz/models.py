@@ -9,4 +9,3 @@ class taken_quiz(models.Model) :
     def __str__(self) :
         return (str(self.user) + str(self.quiz_taken_JSON))
     
-
