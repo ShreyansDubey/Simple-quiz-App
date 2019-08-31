@@ -18,6 +18,6 @@ A quiz/questionairre web application
 
 `python manage.py runserver 8000`
 
-The web application should now be hosted at https://localhost:8000/
+The web application should now be hosted at http://localhost:8000/
 
 
