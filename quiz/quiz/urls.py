@@ -19,6 +19,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from signup import views as signup_views
 from createQuiz import views as cq_views
+from takeQuiz import views as tq_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,8 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(template_name="logged_out.html"), name='logout'),
     url(r'^signup/$', signup_views.signup, name='signup'),
     url(r'^create_quiz/$', cq_views.create_quiz, name='create_quiz'),
+    url(r'^quiz_list/$', tq_views.quiz_list, name='quiz_list'),
+    url(r'attempt_quiz/$', tq_views.attempt_quiz, name='attempt_quiz'),
     path('', include('social_django.urls', namespace='social')),
     url(r'^$', signup_views.home, name='home'),
-    
 ]

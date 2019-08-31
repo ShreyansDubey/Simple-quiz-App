@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+<h1>Quiz Platform</h1>
+{% if user.is_authenticated %}
+  <p>Logged in as {{ user.username }}</p>
+  <br>
+  {% if user.is_staff %}
+    <a href="{% url 'create_quiz' %}"> You cannot take any quizzes </a>
+  {% else %}
+    <form id="ans_form" method="POST">
+        <input type="hidden" name="quiz_ans_string">
+    </form>
+    <div>
+        <ul>
+            {% for num, q, a, b, c in q_questions %}<br>
+                question {{ num }} : {{ q }}<br>
+                Option A : {{ a }}<br>
+                Option B : {{ b }}<br>
+                Option C : {{ c }}<br>
+                <br>
+                <input type="radio" name="{{ q }}" value="A">A</input><br>
+                <input type="radio" name="{{ q }}" value="B">B</input><br>
+                <input type="radio" name="{{ q }}" value="C">C</input><br>
+
+            {% endfor %}
+        </ul>
+    </div>
+  {% endif %}
+{% else %}
+    Please login to attempt quizzes
+  <a href="{% url 'social:begin' 'google-oauth2' %}">
+    Login with google
+  </a>
+  <br>
+  <a href="{% url 'login' %}">
+    Login with user account
+  </a>
+{% endif %}
+{% endblock %}

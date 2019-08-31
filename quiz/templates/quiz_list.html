@@ -9,11 +9,16 @@
   <a href="{% url 'logout' %}">Logout</a>
   <br>
   {% if user.is_staff %}
-    <a href="{% url 'create_quiz' %}"> Create a new quiz </a>
+    You can only create quizzes
+    <a href="{% url 'home' %}"> Home </a>
   {% else %}
-    <a href="{% url 'quiz_list' %}"> Attempt a quiz </a>
+    <p>This is the list of quizzes you are allowed to take : </p>
+    {% for name, id in q_names_ids %}
+      <a href="/attempt_quiz?quiz_idx={{ id|urlencode }}">{{ name }} ----- {{ id }}</a><br>
+    {% endfor %}
   {% endif %}
 {% else %}
+    Login to attepmt quizzes
   <a href="{% url 'social:begin' 'google-oauth2' %}">
     Login with google
   </a>
