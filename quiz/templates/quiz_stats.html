@@ -8,13 +8,20 @@
   <p>Logged in as {{ user.username }}</p>
   <a href="{% url 'logout' %}">Logout</a>
   <br>
+  <a href="{% url 'home' %}">Home</a><br>
   {% if user.is_staff %}
     <a href="{% url 'create_quiz' %}"> Create a new quiz </a><br>
-    <a href="{% url 'quiz_stats' %}"> See quiz Statistics </a>
-  {% else %}
-    <a href="{% url 'quiz_list' %}"> Attempt a quiz </a>
+    <br>
+    <h2>Quiz Statistics</h2>
+    {% for id, num_of_q, times_attempted in quiz_details %}
+        Quiz ID : {{ id }} <br>
+        Number of questions : {{ num_of_q }} <br>
+        Number of times attempted : {{ times_attempted }} <br>
+    {% endfor %}
   {% endif %}
+
 {% else %}
+    Please login to continue
   <a href="{% url 'social:begin' 'google-oauth2' %}">
     Login with google
   </a>
