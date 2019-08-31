@@ -89,7 +89,7 @@ def attempt_quiz(request) :
             new_record = taken_quiz(user=curr_username, quiz_taken_JSON=json.dumps(quiz_taken_j))
             new_record.save(force_insert=True)
             text = 'Responses Saved'
-        return render(request, 'attempt_quiz.html', {'text' : text})
+        return render(request, 'attempt_quiz.html', {'text' : text, 'hide' : 'hide'})
     else :
 
         #getting the quiz index from the link clicked

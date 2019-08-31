@@ -33,7 +33,13 @@
                 <input type="radio" name="{{ q }}" value="C">C</input><br>
             {% endfor %}
         </ul>
-        <button id="submit_quiz" class="btn btn-primary">Submit Quiz</button>
+        <div id="button">
+          {% if hide == 'hide' %}
+            <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+          {% else %}
+            <button id="submit_quiz" class="btn btn-primary">Submit Quiz</button>
+          {% endif %}
+      </div>
     </div>
   {% endif %}
 {% else %}
