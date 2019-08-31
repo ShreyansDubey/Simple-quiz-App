@@ -6,24 +6,24 @@
 <h1>Quiz Platform</h1>
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
-  <a href="{% url 'logout' %}">Logout</a>
+  <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
   <br>
   {% if user.is_staff %}
     You can only create quizzes
-    <a href="{% url 'home' %}"> Home </a>
+    <a href="{% url 'home' %}" class="btn btn-secondary"> Home </a>
   {% else %}
     <p>This is the list of quizzes you are allowed to take : </p>
     {% for name, id in q_names_ids %}
-      <a href="/attempt_quiz?quiz_idx={{ id|urlencode }}">{{ name }} ----- {{ id }}</a><br>
+      <a href="/attempt_quiz?quiz_idx={{ id|urlencode }}" class="btn btn-secondary">{{ name }} ----- {{ id }}</a><br><br>
     {% endfor %}
   {% endif %}
 {% else %}
     Login to attepmt quizzes
-  <a href="{% url 'social:begin' 'google-oauth2' %}">
+  <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-secondary">
     Login with google
   </a>
   <br>
-  <a href="{% url 'login' %}">
+  <a href="{% url 'login' %}" class="btn btn-secondary">
     Login with user account
   </a>
 {% endif %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}<script src="{% static 'quiz_answers_stringify.js' %}"></script>{% endblock %}
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+<h1>Quiz Platform</h1>
+{% if user.is_authenticated %}
+  <p>Logged in as {{ user.username }}</p>
+  <br>
+  {% if user.is_staff %}
+    You cannot take any quizzes
+    <a href="{% url 'create_quiz' %}" class="btn btn-primary"> Create Quiz </a><br><br>
+    <a herf="{% url 'home' %}">Home</a>
+  {% else %}
+    <div>{{ text }}</div><br>
+    <a herf="{% url 'home' %}" class="list-group-item list-group-item-action active">Home</a>
+    <a href="{% url 'quiz_list' %}" class="list-group-item list-group-item-action active"> Attempt a quiz </a>
+  {% endif %}
+{% else %}
+    Please login to attempt quizzes
+  <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-primary">
+    Login with google
+  </a>
+  <br>
+  <a href="{% url 'login' %}" class="btn btn-primary">
+    Login with user account
+  </a>
+{% endif %}
+{% endblock %}

@@ -7,19 +7,22 @@
 {% block content %}
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
-  <a href="{% url 'logout' %}">Logout</a>
+{% if user.is_staff %}
+  <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
   <input id='noq' name='noq', type="number">
-  <button id='sub_noq'>Submit</button>
+  <button id='sub_noq' class="btn btn-primary">Submit</button>
     <form id='q_form' method="POST">
         {% csrf_token %}
     </form>
+{% else %} You are not allowed to create quizzes<br>
+{% endif %}
 {% else %}
   <p> Please login to create quizzes </p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">
+  <a href="{% url 'social:begin' 'google-oauth2' %}"class="btn btn-primary">
     Login with google
   </a>
   <br>
-  <a href="{% url 'login' %}">
+  <a href="{% url 'login' %}" class="btn btn-primary">
     Login with user account
   </a>
 {% endif %}

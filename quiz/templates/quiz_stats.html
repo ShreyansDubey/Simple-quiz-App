@@ -6,11 +6,11 @@
 <h1>Quiz Platform</h1>
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
-  <a href="{% url 'logout' %}">Logout</a>
+  <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
   <br>
-  <a href="{% url 'home' %}">Home</a><br>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Home</a><br>
   {% if user.is_staff %}
-    <a href="{% url 'create_quiz' %}"> Create a new quiz </a><br>
+    <a href="{% url 'create_quiz' %}" class="btn btn-secondary"> Create a new quiz </a><br>
     <br>
     <h2>Quiz Statistics</h2>
     {% for id, num_of_q, times_attempted in quiz_details %}
@@ -22,11 +22,11 @@
 
 {% else %}
     Please login to continue
-  <a href="{% url 'social:begin' 'google-oauth2' %}">
+  <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-secondary">
     Login with google
   </a>
   <br>
-  <a href="{% url 'login' %}">
+  <a href="{% url 'login' %}" class="btn btn-secondary">
     Login with user account
   </a>
 {% endif %}

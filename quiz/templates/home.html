@@ -6,20 +6,21 @@
 <h1>Quiz Platform</h1>
 {% if user.is_authenticated %}
   <p>Logged in as {{ user.username }}</p>
-  <a href="{% url 'logout' %}">Logout</a>
+  <p>Email : {{ user.email }}</p>
+  <a href="{% url 'logout' %}" class="list-group-item list-group-item-action active" >Logout</a>
   <br>
   {% if user.is_staff %}
-    <a href="{% url 'create_quiz' %}"> Create a new quiz </a><br>
-    <a href="{% url 'quiz_stats' %}"> See quiz Statistics </a>
+    <a href="{% url 'create_quiz' %}"class="list-group-item list-group-item-action active"> Create a new quiz </a><br>
+    <a href="{% url 'quiz_stats' %}"class="list-group-item list-group-item-action active"> See quiz Statistics </a>
   {% else %}
-    <a href="{% url 'quiz_list' %}"> Attempt a quiz </a>
+    <a href="{% url 'quiz_list' %}"class="list-group-item list-group-item-action active"> Attempt a quiz </a>
   {% endif %}
 {% else %}
-  <a href="{% url 'social:begin' 'google-oauth2' %}">
+  <a href="{% url 'social:begin' 'google-oauth2' %}"class="list-group-item list-group-item-action active">
     Login with google
   </a>
   <br>
-  <a href="{% url 'login' %}">
+  <a href="{% url 'login' %}"class="list-group-item list-group-item-action active">
     Login with user account
   </a>
 {% endif %}

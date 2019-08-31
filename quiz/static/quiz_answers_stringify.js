@@ -3,7 +3,6 @@
 //gets a list of all questions
 
 document.getElementById('submit_quiz').onclick = function() {
-
     q_elements = document.getElementsByClassName('q');
     ques = []
     for (let i = 0; i < q_elements.length; i++) {
@@ -25,7 +24,7 @@ document.getElementById('submit_quiz').onclick = function() {
             answers_selected[i] = curr_ans;
         }
     }
-    //Now answers selected has a list of all the answers
+    //Now answers_selected is a list of all the answers
     //console.log(answers_selected);
     ans_selected_string = "";
     for (let i = 0; i < answers_selected.length; i++) {
@@ -36,7 +35,6 @@ document.getElementById('submit_quiz').onclick = function() {
     }
     //Setting the hidden form field value
     document.getElementById('ans').value = ans_selected_string;
-
     //Submitting the form with answers
     document.getElementById('ans_form').submit();
 }

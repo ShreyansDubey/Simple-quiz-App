@@ -39,6 +39,7 @@ def attempt_quiz(request) :
         user_quiz_obj = list(taken_quiz.objects.filter(user = curr_username))
         print(user_quiz_obj)
         #Add the quiz score (correct / incorrect) in the database
+        text = ""
         if len(user_quiz_obj) == 1 :
             print('in 1')
             #record already exists (user has previously taken some quizzes)
@@ -51,6 +52,7 @@ def attempt_quiz(request) :
                 #do not increment the quiz taken count
                 temp = u_q_o[str(q_idx)]
                 print(temp)
+                text = 'You have already submitted this quiz'
             except :
                 #user has not attempted this quiz
                 #increment the quiz taken count
@@ -86,8 +88,8 @@ def attempt_quiz(request) :
             }
             new_record = taken_quiz(user=curr_username, quiz_taken_JSON=json.dumps(quiz_taken_j))
             new_record.save(force_insert=True)
-
-        return render(request, 'attempt_quiz.html', {'text' : 'Responses saved'})
+            text = 'Responses Saved'
+        return render(request, 'attempt_quiz.html', {'text' : text})
     else :
 
         #getting the quiz index from the link clicked

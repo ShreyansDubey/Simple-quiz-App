@@ -45,7 +45,7 @@ def create_quiz(request) :
         # for q in quiz_string.split('|') :
         #     print(q.split(','))
 
-        p = quizzes(quiz_index=q_index, quiz_string=q_string, times_attempted=0)
+        p = quizzes(quiz_index=q_index, quiz_string=q_string, quiz_name='quiz'+str(q_index), times_attempted=0)
         p.save(force_insert=True)
             
 
