@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block script %}<script src="{% static 'quiz_answers_stringify.js' %}"></script>{% endblock %}
 {% block title %}Hello{% endblock %}
 
 {% block content %}
@@ -8,15 +10,19 @@
   <p>Logged in as {{ user.username }}</p>
   <br>
   {% if user.is_staff %}
-    <a href="{% url 'create_quiz' %}"> You cannot take any quizzes </a>
+    You cannot take any quizzes
+    <a href="{% url 'create_quiz' %}"> Create Quiz </a>
   {% else %}
     <form id="ans_form" method="POST">
-        <input type="hidden" name="quiz_ans_string">
+        {% csrf_token %}
+        <input id="ans" type="hidden" name="quiz_ans_string">
+        <input type="hidden" name="q_idx" value="{{ q_idx }}">
     </form>
+    <div>Quiz {{ q_idx }}</div>
     <div>
         <ul>
             {% for num, q, a, b, c in q_questions %}<br>
-                question {{ num }} : {{ q }}<br>
+                question {{ num }} : <span class="q">{{ q }}</span><br>
                 Option A : {{ a }}<br>
                 Option B : {{ b }}<br>
                 Option C : {{ c }}<br>
@@ -24,9 +30,9 @@
                 <input type="radio" name="{{ q }}" value="A">A</input><br>
                 <input type="radio" name="{{ q }}" value="B">B</input><br>
                 <input type="radio" name="{{ q }}" value="C">C</input><br>
-
             {% endfor %}
         </ul>
+        <button id="submit_quiz" >Submit Quiz</button>
     </div>
   {% endif %}
 {% else %}
