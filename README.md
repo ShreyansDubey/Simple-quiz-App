@@ -1,4 +1,4 @@
-# IRIS_171IT141_Django
+# Simple-quiz-App
 A quiz/questionairre web application 
 
 
@@ -10,7 +10,7 @@ A quiz/questionairre web application
 
 `pip install python-social-auth`
 
-`git clone https://github.com/ShreyansDubey/IRIS_171IT141_Django.git && cd IRIS_171IT141_Django`
+`git clone https://github.com/ShreyansDubey/Simple-quiz-App.git && cd Simple-quiz-App`
 
 `python manage.py makemigrations`
 
